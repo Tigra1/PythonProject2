@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Pridani zboží</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-</head>
-<body>
-<style>
+  <style>
    .motto {
         display: flex;
         height: 12px;
@@ -26,10 +23,10 @@
         width: max-content;
         text-decoration: none;
     }
-    .table-container { 
-        display: flex; 
-        justify-content: left; 
-        gap: 10px; 
+    .table-container {
+        display: flex;
+        justify-content: left;
+        gap: 10px;
         background-color: rgb(231, 227, 227);
         margin-left: 5%;
         padding: 3%;
@@ -53,7 +50,7 @@
         padding: 5%;
         max-width: 100%;
         font-family:  'Franklin Gothic Medium', Arial, sans-serif;
-    
+
     }
     .text {
         margin-left: 5%;
@@ -74,7 +71,7 @@
     }
     .container {
             display: flex;
-           
+
             gap: 70px;
             padding: 3%;
     }
@@ -86,14 +83,60 @@
         }
     .form_container {
         width: 30%;
-        
+
     }
     textarea {
         width: 100%;
         box-sizing: border-box;
         resize: vertical;
     }
+     .form-vertical {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Расстояние между элементами */
+        max-width: 400px; /* Задаём ширину формы */
+        margin: 0 auto; /* Центрируем форму на странице */
+           margin-left: 5%;
+        color: #1d1818;
+        background-color: rgb(231, 227, 227);
+        padding: 5%;
+        max-width: 100%;
+        font-family:  'Franklin Gothic Medium', Arial, sans-serif;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column; /* Располагаем метки и поля по вертикали */
+    }
+
+    label {
+        margin-bottom: 5px; /* Отступ между меткой и полем */
+        font-weight: bold; /* Жирный шрифт для меток */
+    }
+
+    input {
+        padding: 10px; /* Внутренний отступ внутри поля */
+        font-size: 14px; /* Размер текста */
+        border: 1px solid #ccc; /* Рамка */
+        border-radius: 4px; /* Скругление углов */
+    }
+
+    .button {
+        padding: 10px;
+        background-color: #457a0f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #3a650d; /* Цвет при наведении */
+    }
 </style>
+</head>
+<body>
+
     <div class="top-menu-sale"> 
         <div class="top-menu-logo">
             <a href="https://www.lingea.cz" title="lingea" class="top-logo">
@@ -108,15 +151,28 @@
     <div class="container">
         <div class="form_container"> 
             <label for="text"><h2 class="text">Přidat zboží</h2></label>
-            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'home' %}" >Home</a>
             <br>
             <br>
-            <form method="post">
+            <form method="POST" class="form-vertical">
                 {% csrf_token %}
-                <br>
-                {{ form.as_p }}
-                <br>
-                <button type="submit">Přidat</button>
+                <div class="form-group">
+                    <label for="id_jmeno">Jméno:</label>
+                    {{ form.jmeno }}
+                </div>
+                <div class="form-group">
+                    <label for="id_prijmeni">Příjmení:</label>
+                    {{ form.prijmeni }}
+                </div>
+                <div class="form-group">
+                    <label for="id_vek">Věk:</label>
+                    {{ form.vek }}
+                </div>
+                <div class="form-group">
+                    <label for="id_telefon">Telefon:</label>
+                    {{ form.telefon }}
+                </div>
+                <button type="submit" class="button">Přidat</button>
             </form>
          </div >
         
@@ -129,7 +185,7 @@
     
             </div>
     </div>
- <!-- Вывод списка застрахованных -->
+ <!-- Вывод списка застрахованных
     {% if pojistencis %}
         <ul>
         {% for pojisteny in pojistencis %}
@@ -138,7 +194,7 @@
         </ul>
     {% else %}
         <p>Žádní pojištěnci nebyli nalezeni.</p>
-    {% endif %}
+    {% endif %}-->
   
 </body>
 </html>

@@ -74,7 +74,7 @@
     }
     .container {
             display: flex;
-           
+
             gap: 70px;
             padding: 3%;
     }
@@ -86,7 +86,8 @@
         }
     .form_container {
         width: 30%;
-        
+
+
     }
     textarea {
         width: 100%;
@@ -109,10 +110,11 @@
         <div class="form_container"> 
             <label for="text"><h2 class="text">Evidence zboží</h2></label>
                 <form method="GET" action="{% url 'home' %}" class="form">
-                    <a href="{% url 'home' %}">Homes</a><br>
+                    <a href="{% url 'home' %}">Home</a><br>
                     <a href="{% url 'add_pojisteny' %}">Přidat nové zboží</a><br>
                     <a href="{% url 'list_pojistencu' %}">Zobrazit všechny pooložký</a>
-                    <br>
+                    <br><br>
+                    <label>Vyhledávaní zboží</label>
                     <br>
                     <input type="text" name="q" placeholder="Zadejte název zboží">
                     <br>
@@ -132,15 +134,18 @@
             </div>
     </div>
  <!-- Вывод списка застрахованных -->
+{% if request.GET.q %}
     {% if pojistencis %}
+        <h3>Результаты поиска:</h3>
         <ul>
         {% for pojisteny in pojistencis %}
-            <li>{{ pojisteny.jmeno }} {{ pojisteny.prijmeni }} - Telefon: {{ pojisteny.telefon }} - Věk: {{ pojisteny.vek }}</li>
+            <li>{{ pojisteny.jmeno }} {{ pojisteny.prijmeni }} - Телефон: {{ pojisteny.telefon }} - Век: {{ pojisteny.vek }}</li>
         {% endfor %}
         </ul>
     {% else %}
-        <p>Žádní pojištěnci nebyli nalezeni.</p>
+        <p>По вашему запросу ничего не найдено.</p>
     {% endif %}
+{% endif %}
   
 </body>
 </html>
