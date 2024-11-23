@@ -66,7 +66,7 @@
         ul.form {
             list-style-type: none;
             padding: 0;
-            margin: 0;
+            margin-left: 5%;
         }
         ul.form li {
             background: #f9f9f9;
@@ -94,6 +94,12 @@
             line-height: 1.5;
             margin-left: 100;
         }
+        .home {
+
+        color: #457a0f;
+        text-decoration: none;
+        margin-left: 5%;
+        }
     </style>
 </head>
 <body>
@@ -109,7 +115,7 @@
     <div class="container">
         <div class="form_container">
             <h2 class="text">Seznam zboží</h2>
-            <a href="{% url 'home' %}">Home</a><br>
+            <a href="{% url 'home' %}" class="home">Úvodní stránka</a>
             <ul class="form">
                 {% for pojisteny in pojistenci %}
                     <li>{{ pojisteny }}</li>
